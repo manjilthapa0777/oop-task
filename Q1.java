@@ -1,33 +1,57 @@
-package taskabstraction;
+package ploy_task;
+// Q1. You are developing a shape drawing application. There are different types of shapes such as circles, rectangles, and triangles.
+// Each shape has its own area calculation method. Implement a Java program using polymorphism to calculate and display the area of different shapes.
 
-// 1. Create an abstract class called Bird with an abstract method called fly().
-// Implement two subclasses called Eagle and Penguin that inherit from Bird.
-// Override the fly() method in both subclasses, ensuring Eagle can fly while Penguin cannot.
-
-abstract class Bird {
-    abstract void fly();
+abstract class Shape {
+    abstract double calculateArea();
 }
 
-class Eagle extends Bird {
-    @Override
-    void fly() {
-        System.out.println("Eagle soars high in the sky!");
+class Circle extends Shape {
+    double radius;
+
+    Circle(double radius) {
+        this.radius = radius;
+    }
+
+    double calculateArea() {
+        return Math.PI * radius * radius;
     }
 }
 
-class Penguin extends Bird {
-    @Override
-    void fly() {
-        System.out.println("Penguins can't fly, but they swim really well.");
+class Rectangle extends Shape {
+    double length, width;
+
+    Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    double calculateArea() {
+        return length * width;
+    }
+}
+
+class Triangle extends Shape {
+    double base, height;
+
+    Triangle(double base, double height) {
+        this.base = base;
+        this.height = height;
+    }
+
+    double calculateArea() {
+        return 0.5 * base * height;
     }
 }
 
 public class Q1 {
     public static void main(String[] args) {
-        Bird eagle = new Eagle();
-        Bird penguin = new Penguin();
+        Shape s1 = new Circle(5);
+        Shape s2 = new Rectangle(4, 6);
+        Shape s3 = new Triangle(4, 7);
 
-        eagle.fly();
-        penguin.fly();
+        System.out.println("Circle Area: " + s1.calculateArea());
+        System.out.println("Rectangle Area: " + s2.calculateArea());
+        System.out.println("Triangle Area: " + s3.calculateArea());
     }
 }
